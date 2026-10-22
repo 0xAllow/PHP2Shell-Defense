@@ -1,0 +1,34 @@
+{
+  "tool": "PHP2Shell Defense - Preflight",
+  "author": "0xAllow",
+  "platform": "linux",
+  "checks": [
+    {
+      "check": "python_version",
+      "ok": true,
+      "detail": "3.13.5"
+    },
+    {
+      "check": "operating_system",
+      "ok": true,
+      "detail": "Linux-6.18.55-x86_64-with-glibc2.41"
+    },
+    {
+      "check": "directory_exists",
+      "ok": true,
+      "detail": "/tmp"
+    },
+    {
+      "check": "available_disk",
+      "ok": true,
+      "detail": "30545 MiB available; minimum 100 MiB"
+    },
+    {
+      "check": "can_read_directory",
+      "ok": true,
+      "detail": "/tmp"
+    }
+  ],
+  "ready_for_local_audit": true,
+  "note": "Preflight is not a guarantee of PHP configuration safety or coverage."
+}
