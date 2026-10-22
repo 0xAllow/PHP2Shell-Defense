@@ -1,0 +1,25 @@
+test_clean_log (test_compromise.CompromiseTests.test_clean_log) ... ok
+test_json_cli_exit (test_compromise.CompromiseTests.test_json_cli_exit) ... ok
+test_log_indicators (test_compromise.CompromiseTests.test_log_indicators) ... ok
+test_log_symlink_rejected (test_compromise.CompromiseTests.test_log_symlink_rejected) ... ok
+test_missing_log_reports_incomplete (test_compromise.CompromiseTests.test_missing_log_reports_incomplete) ... ok
+test_recent_web_file_and_symlink_skip (test_compromise.CompromiseTests.test_recent_web_file_and_symlink_skip) ... ok
+test_preflight_invalid_path (test_cross_platform.CrossPlatformTests.test_preflight_invalid_path) ... ok
+test_preflight_valid_directory (test_cross_platform.CrossPlatformTests.test_preflight_valid_directory) ... ok
+test_unified_cli (test_cross_platform.CrossPlatformTests.test_unified_cli) ... ok
+test_windows_apply_refusal (test_cross_platform.CrossPlatformTests.test_windows_apply_refusal) ... ok
+test_windows_discovery_exe (test_cross_platform.CrossPlatformTests.test_windows_discovery_exe) ... ok
+test_windows_process_failure_is_reported (test_cross_platform.CrossPlatformTests.test_windows_process_failure_is_reported) ... ok
+test_windows_process_parent (test_cross_platform.CrossPlatformTests.test_windows_process_parent) ... ok
+test_plan_apply_backup (test_toolkit.DefenderTests.test_plan_apply_backup) ... ok
+test_symlink_rejected (test_toolkit.DefenderTests.test_symlink_rejected) ... ok
+test_transform_idempotent (test_toolkit.DefenderTests.test_transform_idempotent) ... ok
+test_boundaries (test_toolkit.VersionTests.test_boundaries) ... ok
+test_cli (test_toolkit.VersionTests.test_cli) ... ok
+test_old_and_future (test_toolkit.VersionTests.test_old_and_future) ... ok
+test_parse (test_toolkit.VersionTests.test_parse) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.012s
+
+OK
