@@ -65,6 +65,7 @@ class SafeApplyTests(unittest.TestCase):
             with patch('php2shell.defender.platform.system',return_value='Windows'):
                 with self.assertRaisesRegex(ValueError,'Windows apply'):
                     defend(str(p), '8.4.26', apply=True, acknowledge=True)
+    @unittest.skipIf(os.name == "nt", "Windows automatic apply is intentionally disabled")
     def test_real_php_ini_interpretation_cli(self):
         php=shutil.which('php')
         if not php: self.skipTest('PHP CLI unavailable')

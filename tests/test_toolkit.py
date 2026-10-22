@@ -1,4 +1,5 @@
 import tempfile
+import os
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -31,6 +32,7 @@ class DefenderTests(unittest.TestCase):
         src = '; comment\nsession.upload_progress.enabled = 1\n'
         first = transform(src, {'session.upload_progress.enabled': '0'})
         self.assertEqual(first, transform(first, {'session.upload_progress.enabled': '0'}))
+    @unittest.skipIf(os.name == "nt", "Windows automatic apply is intentionally disabled")
     def test_plan_apply_backup(self):
         with tempfile.TemporaryDirectory() as directory:
             p = Path(directory) / 'php.ini'
