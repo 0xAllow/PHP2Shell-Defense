@@ -1,0 +1,49 @@
+# PHP2Shell Defense - by 0xAllow
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Virtual environments and packaging
+.venv/
+venv/
+env/
+build/
+dist/
+*.egg-info/
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local secrets and environment configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local assessment output (may contain sensitive host data)
+reports/
+assessments/
+assessment*.json
+scan-results*.json
+*.log
+
+# Local backups and temporary files
+backups/
+*.bak
+*.backup
+*.tmp
+*.swp
+*~
