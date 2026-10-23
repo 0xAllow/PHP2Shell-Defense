@@ -1,0 +1,12 @@
+// PHP2Shell Defense - by 0xAllow
+// Microsoft Defender XDR DeviceProcessEvents in Microsoft Sentinel.
+// Requires Defender for Endpoint connector and populated DeviceProcessEvents.
+// Heuristic: PHP/web server parent starting shell, script runtime or downloader.
+let webParents = dynamic(["php.exe","php-cgi.exe","httpd.exe","nginx.exe","w3wp.exe","php-fpm.exe","frankenphp.exe"]);
+let suspiciousChildren = dynamic(["cmd.exe","powershell.exe","pwsh.exe","wscript.exe","cscript.exe","python.exe","perl.exe","curl.exe","certutil.exe","bitsadmin.exe","bash.exe","sh.exe"]);
+DeviceProcessEvents
+| where Timestamp > ago(1h)
+| where tolower(InitiatingProcessFileName) in (webParents)
+| where tolower(FileName) in (suspiciousChildren)
+| project Timestamp, DeviceName, FileName, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine, AccountName, ReportId, DeviceId
+| order by Timestamp desc

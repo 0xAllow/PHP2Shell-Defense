@@ -1,0 +1,10 @@
+// PHP2Shell Defense - by 0xAllow
+// Requires Defender for Endpoint DeviceFileEvents ingestion in Sentinel.
+// Tune webroot paths to your environment before enabling scheduled alerting.
+DeviceFileEvents
+| where Timestamp > ago(1h)
+| where ActionType in~ ("FileCreated", "FileModified")
+| where FolderPath contains @"\inetpub\wwwroot" or FolderPath contains @"\xampp\htdocs" or FolderPath contains "/var/www/" or FolderPath contains "/srv/www/"
+| where FileName endswith ".php" or FileName endswith ".phtml" or FileName endswith ".phar" or FileName endswith ".php.jpg"
+| project Timestamp, DeviceName, ActionType, FolderPath, FileName, InitiatingProcessFileName, InitiatingProcessCommandLine, SHA1, ReportId
+| order by Timestamp desc

@@ -1,0 +1,24 @@
+[metadata]
+creation_date = "2026/10/23"
+maturity = "experimental"
+updated_date = "2026/10/23"
+
+[rule]
+author = ["0xAllow"]
+description = "Alert when a PHP-capable file is created in a typical web root. Requires ECS file creation telemetry. May be noisy for normal deployments."
+from = "now-9m"
+index = ["logs-endpoint.events.file-*", "auditbeat-*"]
+interval = "5m"
+language = "eql"
+license = "MIT"
+name = "PHP2Shell Defense - PHP File Created Under Web Root"
+risk_score = 47
+rule_id = "e7957853-9392-4cab-966a-77aa1bfc4692"
+severity = "medium"
+tags = ["Domain: Endpoint", "Use Case: Threat Detection", "Technique: T1505.003", "PHP2Shell", "0xAllow"]
+type = "eql"
+query = '''
+file where event.type == "creation" and
+ (file.extension in ("php", "phtml", "phar") or file.name : ("*.php.jpg", "*.phtml.jpg")) and
+ (file.path : ("/var/www/*", "/srv/www/*", "/usr/share/nginx/html/*", "C:\\inetpub\\wwwroot\\*", "C:\\xampp\\htdocs\\*"))
+'''

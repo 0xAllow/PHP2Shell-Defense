@@ -1,0 +1,35 @@
+[metadata]
+creation_date = "2026/10/23"
+maturity = "experimental"
+updated_date = "2026/10/23"
+
+[rule]
+author = ["0xAllow"]
+description = "Potential PHP2Shell post-exploitation: web-serving process spawns a shell, interpreter, network utility, or downloader. This is a behavior heuristic, not a CVE-specific exploit signature. Requires ECS process start events and process.parent.name."
+from = "now-9m"
+index = ["logs-endpoint.events.process-*", "winlogbeat-*", "logs-windows.sysmon_operational-*", "auditbeat-*"]
+interval = "5m"
+language = "eql"
+license = "MIT"
+name = "PHP2Shell Defense - Suspicious Web Server Child Process"
+risk_score = 73
+rule_id = "e7957853-9392-4cab-966a-77aa1bfc4691"
+severity = "high"
+tags = ["Domain: Endpoint", "Use Case: Threat Detection", "Tactic: Initial Access", "Technique: T1190", "PHP2Shell", "0xAllow"]
+type = "eql"
+query = '''
+process where event.type == "start" and
+ process.parent.name in ("php-fpm", "php-fpm8.2", "php-fpm8.3", "php-fpm8.4", "php-fpm8.5", "php-cgi", "php.exe", "php-cgi.exe", "httpd", "httpd.exe", "apache2", "nginx", "w3wp.exe", "lsphp", "frankenphp") and
+ process.name in ("sh", "bash", "dash", "zsh", "cmd.exe", "powershell.exe", "pwsh.exe", "python", "python3", "python.exe", "perl", "perl.exe", "curl", "curl.exe", "wget", "nc", "ncat", "socat", "certutil.exe", "bitsadmin.exe")
+'''
+
+[rule.threat]
+framework = "MITRE ATT&CK"
+[[rule.threat.technique]]
+id = "T1190"
+name = "Exploit Public-Facing Application"
+reference = "https://attack.mitre.org/techniques/T1190/"
+[rule.threat.tactic]
+id = "TA0001"
+name = "Initial Access"
+reference = "https://attack.mitre.org/tactics/TA0001/"
